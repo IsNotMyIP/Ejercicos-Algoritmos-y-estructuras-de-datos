@@ -1,0 +1,64 @@
+#include "Racional.h"
+#include "iostream" 
+#include "cassert" //Para los controladores
+using namespace std;
+Racional::Racional(){
+	//Empty
+}
+
+Racional::Racional(int num, int denom){
+	assert(denom != 0);
+
+	//Comprobamos el signo y se lo damos al numerador 
+	//para facilitar las operaciones.
+	if (denom < 0) {
+		num = -num;
+		denom = -denom;
+	}
+	//Se lo servimos al obj.
+	this->numerador = num;
+	this->denominador = denom;
+}
+
+int Racional::getDenominador(){
+	return this->denominador;
+}
+
+int Racional::getNumerador(){
+	return this->numerador;
+}
+
+Racional Racional::sumar(Racional sumando){
+	//Comprobamos que los denom son correctos.
+	assert(this->denominador > 0);
+	//?? getDenominador ???//
+	assert(sumando.denominador);
+
+	//Calculamos nuevo denominador
+	int newDenom = this->denominador * sumando.denominador;
+	//Calculamos nuevo numerador
+	int newNum = (this->numerador * sumando.numerador) + (sumando.numerador * this->denominador);
+	
+	//Creamos el obj y lo devolvemos
+	Racional result(newNum, newDenom);
+	return(result);
+}
+
+Racional Racional::multiplicar(Racional operando){
+	//Calculamos numerador y denominador
+	int newNum = this->numerador * operando.numerador;
+	int newDenom = this->denominador * operando.denominador;
+	
+	//Devolvemos el Racional 
+	Racional result(newNum, newDenom);
+	return result;
+}
+
+void Racional::escribir(){
+	if (denominador == 1 || numerador == 0){
+		cout << this->numerador;
+	}
+	else{
+		cout << this->numerador << "/" << this->denominador;
+	}
+}
