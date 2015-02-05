@@ -1,8 +1,6 @@
 .metadata/
-*.vcxproj
 *.sdf
 *.suo
 *.opensdf
-*.vcxproj.filters
 Debug/
 *.cd
