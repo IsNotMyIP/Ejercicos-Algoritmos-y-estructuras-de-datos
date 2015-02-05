@@ -2,6 +2,7 @@
 #include "iostream" 
 #include "cassert" //Para los controladores
 using namespace std;
+
 Racional::Racional(){
 	//Empty
 }
@@ -46,11 +47,11 @@ Racional Racional::sumar(Racional sumando){
 
 Racional Racional::multiplicar(Racional operando){
 	//Calculamos numerador y denominador
-	int newNum = this->numerador * operando.numerador;
-	int newDenom = this->denominador * operando.denominador;
+	int newNumerador = this->numerador * operando.numerador;		//Could be better to use a getter
+	int newDenominador = this->denominador * operando.denominador;	//Could be better to use a getter
 	
 	//Devolvemos el Racional 
-	Racional result(newNum, newDenom);
+	Racional result(newNumerador, newDenominador);
 	return result;
 }
 
