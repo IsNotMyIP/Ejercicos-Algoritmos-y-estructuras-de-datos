@@ -1,1 +1,7 @@
 .metadata/
+*.vcxproj
+*.sln
+*.sdf
+*.suo
+*.opensdf
+*.vcxproj.filters
