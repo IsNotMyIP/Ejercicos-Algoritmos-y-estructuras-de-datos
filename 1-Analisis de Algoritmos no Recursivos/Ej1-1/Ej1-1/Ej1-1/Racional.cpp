@@ -62,3 +62,33 @@ void Racional::escribir(){
 		cout << this->numerador << "/" << this->denominador;
 	}
 }
+
+int Racional::calcularMCD(int p1, int p2){
+	// Hacemos un control de errores
+	assert(p1 > 0);
+	assert(p2 > 0);
+
+	int aux; //Variable de apoyo y retornada.
+
+	//Realizamos el calculo en bucle.
+	while (p1 != p2){
+		if (p1 > p2){
+			p1 = p1 - p2;
+		}
+		else{
+			p2 = p2 - p1;
+		}
+		aux = p1;
+	}
+	return aux;
+}
+
+void Racional::simplificar(){
+	// Control de errores.
+	assert(this->denominador > 0);
+
+	int MCD = calcularMCD(this->numerador, this->denominador);
+	this->denominador = this->denominador / MCD;
+	this->numerador = this->numerador / MCD;
+
+}

@@ -40,6 +40,8 @@ int main(){
 	resultado = a.multiplicar(b);
 	cout << "Resultado multiplicaciom primer y segundo racional: ";
 	resultado.escribir();
-
+	cout << endl;
+	a.simplificar();
+	a.escribir();
 	return 0;
 }
