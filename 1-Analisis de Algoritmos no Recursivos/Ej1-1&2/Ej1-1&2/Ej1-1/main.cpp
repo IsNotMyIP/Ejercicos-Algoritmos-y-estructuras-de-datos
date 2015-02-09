@@ -25,12 +25,22 @@ int main(){
 		cin >> numerador;
 		cin >> denominador;
 	} while (denominador == 0);
+
+	//Declaramos y escribimos el racional.
 	Racional a(numerador, denominador);
-	cout << a;
+	cout << "Racional a: " << a << endl;
+
+	//Lo simplificamos.
+	Racional simplificado = a;
+	simplificado.simplificar();
+	cout << "Simplificado de a: " << simplificado;
+
+	
 	return 0;
 }
 
-ostream& operator << (ostream &salida, Racional racional){
+ostream& operator << (ostream &salida, Racional racional)
+{
 	if (racional.getNumerador() == 0 || racional.getDenominador() == 1){
 		salida << racional.getNumerador();
 	}
