@@ -10,7 +10,9 @@ using namespace std;
 	- racional:clase que queremos imprimir por pantalla
 	Salida:
 	- salida, ostream para usar por cout.
-*/
+*/ 
+// Es de tipo ostream& dado que devolvera una referencia a un ostream, por
+// restricciones propias de c++ dado que ostream es una clase muy grande y no permite pasarla como copia.
 ostream& operator << (ostream &salida, Racional racional);
 
 int main(){

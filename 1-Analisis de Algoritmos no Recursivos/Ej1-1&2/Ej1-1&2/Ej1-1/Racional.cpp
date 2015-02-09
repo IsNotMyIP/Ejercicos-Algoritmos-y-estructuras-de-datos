@@ -55,15 +55,6 @@ Racional Racional::multiplicar(Racional operando){
 	return result;
 }
 
-void Racional::escribir(){
-	if (denominador == 1 || numerador == 0){
-		cout << this->numerador;
-	}
-	else{
-		cout << this->numerador << "/" << this->denominador;
-	}
-}
-
 int Racional::calcularMCD(int p1, int p2){
 	// Hacemos un control de errores
 	assert(p1 > 0);

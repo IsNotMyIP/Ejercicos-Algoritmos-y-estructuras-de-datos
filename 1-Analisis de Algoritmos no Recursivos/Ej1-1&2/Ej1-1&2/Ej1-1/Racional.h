@@ -42,6 +42,5 @@ public:
 	
 	/* Simplifica el Racional desde el que es llamado.*/
 	void simplificar();
-	/* Imprime el Racional*/
-	void escribir();
+
 };
