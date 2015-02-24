@@ -1,4 +1,5 @@
-
+#include <iostream>
+using namespace std;
 #include <math.h>
 
 
@@ -43,5 +44,6 @@ bool recursivoBuscar(unsigned int* inicio, unsigned int size, unsigned int cualo
 }
 int main(){
 
+	cout << recursivoSumaNaturales(3);
 	return 0;
 }
