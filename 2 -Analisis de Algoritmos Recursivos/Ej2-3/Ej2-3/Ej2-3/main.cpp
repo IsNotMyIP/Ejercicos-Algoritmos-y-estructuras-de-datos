@@ -6,7 +6,7 @@ using namespace std;
 
 int main(){
 	int x;
-	AreaEmbaldosada caca = AreaEmbaldosada(7, Celda(0, 1));
+	AreaEmbaldosada caca = AreaEmbaldosada(8, Celda(0, 1));
 	cout << caca;
 	return 0;
 }

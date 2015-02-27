@@ -24,14 +24,20 @@ AreaEmbaldosada::AreaEmbaldosada(int size, Celda busy){
 	}
 }
 
+void baldosa(int x, int y, int contador, int angulo){
+
+}
+void embaldosar(int x, int y, Celda busy){
+
+}
 int AreaEmbaldosada::getSize(){
 	return this->size;
 }
+
  Celda*& AreaEmbaldosada::operator[](int x){
 	return area[x];
 }
  
-
 ostream& operator<< (ostream& o, AreaEmbaldosada a){
 	for (int i = 0; i < a.getSize(); i++){
 		for (int j = 0; j < a.getSize(); j++){
