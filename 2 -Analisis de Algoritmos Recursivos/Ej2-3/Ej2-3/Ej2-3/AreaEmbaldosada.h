@@ -7,4 +7,7 @@ private:
 	Celda busy;
 public:
 	AreaEmbaldosada(int size, Celda busy);
+	Celda*& operator[](int x);
+
+
 };

@@ -21,4 +21,8 @@ public:
 	// - contenido, int, contenido de la celda.
 	//Asserts: posX => 0 && posY => 0
 	Celda(int posX, int posY, int contenido);
+
+	int getX();
+	int getY();
+	int getContenido();
 };

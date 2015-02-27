@@ -15,3 +15,15 @@ Celda::Celda(int posX, int posY, int contenido){
 	this->y = posY;
 	this->contenido = contenido;
 }
+
+int Celda::getX(){
+	return this->x;
+}
+
+int Celda::getY(){
+	return this->y;
+}
+
+int Celda::getContenido(){
+	return this->contenido;
+}
