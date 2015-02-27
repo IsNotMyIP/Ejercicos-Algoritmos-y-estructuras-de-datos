@@ -5,7 +5,8 @@ using namespace std;
 
 
 int main(){
-	AreaEmbaldosada caca = AreaEmbaldosada(2, Celda(0, 0));
-	cout << caca[0][1].getY() << caca[0][1].getX();
+	int x;
+	AreaEmbaldosada caca = AreaEmbaldosada(7, Celda(0, 1));
+	cout << caca;
 	return 0;
 }

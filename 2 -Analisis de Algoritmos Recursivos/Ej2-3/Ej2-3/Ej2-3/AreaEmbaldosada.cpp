@@ -1,5 +1,6 @@
 #include "AreaEmbaldosada.h"
 
+
 AreaEmbaldosada::AreaEmbaldosada(int size, Celda busy){
 	this->size = size;
 	this->area = (Celda**) malloc(size * sizeof(Celda*));
@@ -23,6 +24,20 @@ AreaEmbaldosada::AreaEmbaldosada(int size, Celda busy){
 	}
 }
 
+int AreaEmbaldosada::getSize(){
+	return this->size;
+}
  Celda*& AreaEmbaldosada::operator[](int x){
 	return area[x];
 }
+ 
+
+ostream& operator<< (ostream& o, AreaEmbaldosada a){
+	for (int i = 0; i < a.getSize(); i++){
+		for (int j = 0; j < a.getSize(); j++){
+			cout << setw(4) << a[j][i].getContenido();
+		}
+		cout << endl;
+	}
+	 return o;
+ }
