@@ -6,7 +6,10 @@ using namespace std;
 
 int main(){
 	int x;
-	AreaEmbaldosada caca = AreaEmbaldosada(8, Celda(0, 1));
+	AreaEmbaldosada caca = AreaEmbaldosada(8, Celda(3, 1));
+	cout << caca;
+	caca.embaldosar(Celda(0, 0), 8, Celda(3, 1));
+	cout << endl;
 	cout << caca;
 	return 0;
 }

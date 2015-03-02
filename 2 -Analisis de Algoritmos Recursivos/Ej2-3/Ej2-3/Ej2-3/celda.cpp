@@ -2,7 +2,9 @@
 Celda::Celda(){
 	//EMPTY
 }
-
+void Celda::setContenido(int contenido){
+	this->contenido = contenido;
+}
 Celda::Celda(int posX, int posY){
 	this->x = posX;
 	this->y = posY;

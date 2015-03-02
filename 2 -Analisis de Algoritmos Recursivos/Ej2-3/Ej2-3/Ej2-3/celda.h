@@ -25,4 +25,5 @@ public:
 	int getX();
 	int getY();
 	int getContenido();
+	void setContenido(int contenido);
 };
