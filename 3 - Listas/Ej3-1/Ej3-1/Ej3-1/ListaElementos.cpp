@@ -5,6 +5,9 @@ bool ListaElementos::llena(){
 	return (capacity == size);
 }
 
+Elemento ListaElementos::getElemento(int pos){
+	return this->inicio[pos];
+}
 void ListaElementos::setElemento(int pos, Elemento nuevo){
 	this->inicio[pos] = nuevo;
 }
@@ -29,10 +32,11 @@ void ListaElementos::ifExpandir(){
 	}
 }
 void ListaElementos::insertar(int pos, Elemento nuevo){
-	assert(pos > 0);
+	assert(pos >= 0);
 	assert(nuevo.getContenido() != NULL);
 	
 	ifExpandir();
+	cout << endl << this->inicio[pos].getContenido();
 	memmove(&this->inicio[pos+1], &this->inicio[pos], sizeof(Elemento) * (size-pos));
 	size++;
 	setElemento(pos, nuevo);

@@ -4,18 +4,10 @@
 
 int main(){
 	ListaElementos caca(1);
-	caca.imprimir();
-	caca.insertar(1, Elemento(2));
-	cout << endl;
-	caca.imprimir();
-	caca.insertar(1, Elemento(3));
-	caca.insertar(2, Elemento(4));
-	cout << endl;
-	caca.imprimir();
-
-	caca.insertar(2, Elemento(5));
-	cout << endl;
-	caca.imprimir();
-	cout << endl;
+	Elemento jo(2);
+	caca.insertar(1, jo);
+	jo.setContenido(3);
+	caca.insertar(1, jo);
+	cout << caca.getElemento(0).getContenido() << endl << caca.getElemento(1).getContenido() << endl << caca.getElemento(2).getContenido();
 	return 0;
 }
