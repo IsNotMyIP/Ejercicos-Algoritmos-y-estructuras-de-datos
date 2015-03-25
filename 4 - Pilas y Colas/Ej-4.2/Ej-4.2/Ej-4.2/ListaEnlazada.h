@@ -34,7 +34,7 @@ class ListaEnlazada
 public:
 
 	// Constructor. Crea una lista de tamaño 0
-	// Complejidad temporal y espacial: O(1)
+	// Complejidad temporal y espacial: O(1) 
 	ListaEnlazada();
 
 	// Constructor de copia

@@ -1,11 +1,15 @@
 #include "iostream"
+#include "string"
 #include "Pila.h"
-
+#include "Calculadora.h"
 using namespace std;
 
-void main () {
+int main () {
 
-	
+	Calculadora caca;
+
+	cout << caca.evaluar("3x(15+15)");
+	return 0;
 
 }
 

@@ -1,15 +1,18 @@
 #include "Pila.h"
 #include "cstring"
+#include "string"
 class Calculadora{
 private:
-	Pila inFijo;
-	Pila postFijo;
+	ListaEnlazada inFijo;
+	ListaEnlazada postFijo;
+	Pila auxOperandos;
 
-	void convertirTextoAListaInfija();
-	void convertirTextoAListaPostFija();
-	void evaluarPostFijo();
+	void convertirTextoAListaInfija(string cadena);
+	void convertirInfijoAListaPostFija();
+	int evaluarPostFijo();
 
 public:
+	
 	int evaluar(string aCalcular);
 	
 };
