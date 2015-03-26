@@ -2,7 +2,8 @@
 #include "cstring"
 #include "string"
 class Calculadora{
-private:
+public:
+	//add constructor maybe attributes pointers.
 	ListaEnlazada inFijo;
 	ListaEnlazada postFijo;
 	Pila auxOperandos;
@@ -11,7 +12,7 @@ private:
 	void convertirInfijoAListaPostFija();
 	int evaluarPostFijo();
 
-public:
+
 	
 	int evaluar(string aCalcular);
 	
