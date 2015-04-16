@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Elemento.h"
 #include "Nodo.h"
 
@@ -36,13 +35,14 @@ class ListaEnlazada
 	// Parámetro: lista enlazada que se quiere ordenar (ojo: es una referencia para no tener que copiarla!!)
 	// Complejidad temporal: O(nlgn)
 	// Complejidad espacial: O(1)
-	void ordenarPorMergeSort(ListaEnlazada &lista);
+	void ordenarPorMergeSortRecursivo(ListaEnlazada &lista);
 
+	// Ordena una lista doblemente enlazada y circular utilizando quick sort recursivo
+	// Parámetro: lista enlazada que se quiere ordenar (ojo: es una referencia para no tener que copiarla!!)
+	// Complejidad temporal: O(n^2)
+	// Complejidad espacial: O(1)
+	void ordenarPorQuickSortRecursivo(ListaEnlazada &lista);
 
-	void ListaEnlazada::ordenarPorQuickSort(ListaEnlazada &lista);
-
-
-	float getPivote();
 public:
 
 	// Constructor. Crea una lista de tamaño 0
@@ -140,7 +140,12 @@ public:
 	// Ordena la lista de menor a mayor, utilizando el algoritmo MergeSort recursivo
 	// Complejidad temporal: O(nlgn)
 	// Complejidad espacial: O(1)
-	void ordenar();
+	void ordenarPorMergeSort();
+
+	// Ordena la lista de menor a mayor, utilizando el algoritmo QuickSort recursivo
+	// Complejidad temporal: O(n^2)
+	// Complejidad espacial: O(1)
+	void ordenarPorQuickSort();
 
 	// Destructor. Libera memoria
 	// Complejidad temporal: O(n)

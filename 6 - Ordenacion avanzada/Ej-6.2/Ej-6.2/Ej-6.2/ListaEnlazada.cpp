@@ -185,7 +185,7 @@ int ListaEnlazada::buscar(Elemento elementoABuscar) {
 		if (getValor(posicion) == elementoABuscar) encontrado = true;
 		posicion++;
 	}
-		
+
 	// Devolvemos la posición si lo hemos encontrado, o -1 en caso contrario
 	if (encontrado) return (posicion - 1);
 	else return (-1);
@@ -195,41 +195,30 @@ ListaEnlazada::~ListaEnlazada() {
 	vaciarLista();
 }
 
-void ListaEnlazada::ordenar() {
+void ListaEnlazada::ordenarPorMergeSort() {
 	// Si la lista está vacía o tiene un solo nodo, ya está ordenada y no hay que hacer nada
-	if (n >= 2) ordenarPorMergeSort(*this);
+	if (n >= 2) ordenarPorMergeSortRecursivo(*this);
 }
 
-void ListaEnlazada::ordenarPorQuickSort(ListaEnlazada &lista){
-	if (lista.getN() > 1){
-		//int pivote = this->
-		//Dividimos entre 2 la lista por menore sy mayores constantemente
-
-	}
+void ListaEnlazada::ordenarPorQuickSort() {
+	// Si la lista está vacía o tiene un solo nodo, ya está ordenada y no hay que hacer nada
+	if (n >= 2) ordenarPorQuickSortRecursivo(*this);
 }
 
-float ListaEnlazada::getPivote(){
-	//Sobrecargar debido al acoplamiento en liugar de esto
 
-	float primero = this->getValor(0).get();
-	float ultimo = this->getValor(this->getN() - 1).get();
-
-	return (primero + ultimo) / 2;
-}
-
-void ListaEnlazada::ordenarPorMergeSort(ListaEnlazada &lista) {
+void ListaEnlazada::ordenarPorMergeSortRecursivo(ListaEnlazada &lista) {
 
 	// Sólo hacemos algo si la lista tiene al menor 2 nodos 
 	// Por tanto no hay llamada recursiva (caso trivial) cuando se tiene 1 nodo o menos
 	if (lista.getN() >= 2) {
 
 		// Listas que contendrán a cada una de las dos partes en que dividiremos la lista enlazada
-		ListaEnlazada sublista1, sublista2; 
+		ListaEnlazada sublista1, sublista2;
 
 		// Los nodos de posición par los ponemos en la primera sublista, y los impares en la segunda
 		int n = lista.getN(); // Tamaño de la lista pasada como parametro
-		for (int i=0; i<n; i++) {
-			if (i%2 == 0) {
+		for (int i = 0; i<n; i++) {
+			if (i % 2 == 0) {
 				sublista1.insertar(sublista1.getN(), lista.getValor(0));
 				lista.eliminar(0);
 			}
@@ -240,8 +229,8 @@ void ListaEnlazada::ordenarPorMergeSort(ListaEnlazada &lista) {
 		}
 
 		// Hacemos la llamada recursiva para ordenar ambas sublistas por separado
-		ordenarPorMergeSort(sublista1);
-		ordenarPorMergeSort(sublista2);
+		ordenarPorMergeSortRecursivo(sublista1);
+		ordenarPorMergeSortRecursivo(sublista2);
 
 		// Combinamos ambas sublistas y metemos la combinación en el parámetro de la función
 		// Vamos cogiendo el menor elemento del principio de ambas sublistas, hasta que una de ellas quede vacía
@@ -275,7 +264,81 @@ void ListaEnlazada::ordenarPorMergeSort(ListaEnlazada &lista) {
 		}
 
 	} // Fin if (lista.getN() >= 2)
-} 
+}
 
 
+void ListaEnlazada::ordenarPorQuickSortRecursivo(ListaEnlazada &lista) {
+	assert(lista.getN() > 0); // Nunca podemos recibir una lista vacía. Como mínimo que tenga 1 nodo.
 
+	int n = lista.getN(); // Tamaño de la lista pasada como parametro
+
+	// Sólo hacemos algo si la lista tiene al menor 2 nodos 
+	// Por tanto no hay llamada recursiva (caso trivial) cuando se tiene 1 nodo
+	if (n >= 2) {
+
+		// Listas que contendrán a cada una de las dos partes en que dividiremos la lista enlazada
+		ListaEnlazada sublista1, sublista2;
+
+		// Elegimos el pivote como el primer elemento para que sea O(1)
+		// Una mejor elección hubiera sido la media del primero y el ultimo. Seguiría siendo O(1) porque la 
+		// lista es doblemente enlazada y circular, y seguiría siendo un buen privote incluso si la lista está ordenada o casi ordenada
+		// Hemos elegido la mala solucion para ilustrar, a continuacion, la solucion para que una de las sublistas no quede vacia.
+		// Si hubieramos elegido la media, en ningún caso hubiera habido ninguna sublista vacia aunque hubieramos recorrido la lista
+		// de principio a fin en vez de fin a inicio
+		Elemento valorPivote = lista.getValor(0);
+
+		// Repartimos los elementos según el pivote. Empezamos por el último y acabamos por el primero.
+		// De este modo, el último elemento que metemos es el pivote. Como los elementos que son menores que el pivote
+		// los metemos en la sublista que menos elementos tenga, y como el último que comprobamos es el pivote, de este modo
+		// nos aseguramos que la lista que menos elementos tenga al menos tenga tamaño 1
+		while (lista.getN() > 0) {
+			ListaEnlazada *sublistaEnDondeMeter; // Sublista en donde meteremos el elemento a repartir
+
+			// Obtenemos el elemento a repartir y lo eliminamos de la lista
+			Elemento elemento = lista.getValor(lista.getN() - 1); // Elemento a repartir. Tomamos el último
+			lista.eliminar(lista.getN() - 1);
+
+			// Averiguamos en qué sublista meter el elemento
+			if (elemento < valorPivote) sublistaEnDondeMeter = &sublista1;
+			else if (elemento > valorPivote) sublistaEnDondeMeter = &sublista2;
+			else { // El elemento es igual que el pivote
+				// Lo metemos en la sublista que menos elementos tenga
+				if (sublista1.getN() < sublista2.getN()) sublistaEnDondeMeter = &sublista1;
+				else sublistaEnDondeMeter = &sublista2;
+			}
+
+			// Metemos el elemento en la sublista adecuada
+			sublistaEnDondeMeter->insertar(sublistaEnDondeMeter->getN(), elemento);
+		}
+
+		// Hacemos la llamada recursiva para ordenar ambas sublistas por separado
+		ordenarPorMergeSortRecursivo(sublista1);
+		ordenarPorMergeSortRecursivo(sublista2);
+
+		// Concatenamos ambas listas de forma eficiente, en O(1). Por ello no podemos usar el operador de concatenar, pues tardaria O(n) 
+		// y además crearía una nueva lista como resultado de la concatenacion (y por lo tanto usaría memoria adicional)
+		// Primero averiguamos los cuatro nodos clave (primero y último de cada una de las sublistas), y después los enlazamos entre sí
+		// Recordemos que cada una de las dos sublistas al menos tiene 1 nodo
+		Nodo *primeroSublista1 = sublista1.getNodo(0);
+		Nodo *ultimoSublista1 = sublista1.getNodo(sublista1.getN() - 1);
+		Nodo *primeroSublista2 = sublista2.getNodo(0);
+		Nodo *ultimoSublista2 = sublista2.getNodo(sublista2.getN() - 1);
+
+		// Enlazamos los nodos entre ellos. Recordemos que la lista es doblemente enlazada y circular
+		ultimoSublista1->setSiguienteNodo(primeroSublista2);
+		primeroSublista2->setAnteriorNodo(ultimoSublista1);
+		primeroSublista1->setAnteriorNodo(ultimoSublista2);
+		ultimoSublista2->setSiguienteNodo(primeroSublista1);
+
+		// Configuramos la lista resultado, que es la que nos pasaron por parámetro
+		lista.lista = primeroSublista1;
+		lista.n = sublista1.getN() + sublista2.getN();
+
+		// Configuramos las sublistas para que ya no apunten a esos nodos.
+		sublista1.lista = NULL;
+		sublista1.n = 0;
+		sublista2.lista = NULL;
+		sublista2.n = 0;
+
+	} // Fin if (lista.getN() >= 2)
+}
